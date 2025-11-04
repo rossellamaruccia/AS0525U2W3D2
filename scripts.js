@@ -28,27 +28,26 @@ deleteName = function (e) {
 const display = document.getElementById("display")
 let seconds = 0
 const TIME = "memory"
+let timer 
 
 let startTimer = function (e) {
   e.preventDefault()
-  setInterval(
-    function () {
-      display.innerHTML = seconds++
-      let value = seconds
-      sessionStorage.setItem(TIME, value)
-    },
-    1000
-  )
+  timer = setInterval(function () {
+    display.innerHTML = seconds++
+    let value = seconds
+    sessionStorage.setItem(TIME, value)
+  }, 1000)
 }
 
 let pauseTimer = function (e) {
   e.preventDefault()
-    let timeValue = sessionStorage.getItem('memory', value)
-    display.innerHTML = timeValue
+  let timeValue = sessionStorage.getItem(TIME)
+  display.innerHTML = timeValue
 }
 
 let resetTimer = (e) => {
   e.preventDefault()
   display.innerHTML = 0
   sessionStorage.clear()
+  clearInterval(timer)
 }
